@@ -16,8 +16,6 @@ WORKDIR /sapopinguino-translate
 
 COPY --from=build /sapopinguino-translate/bin/main ./main
 
-COPY --from=build /sapopinguino-translate/assets ./assets
-
 COPY --from=build /sapopinguino-translate/config/config.prod.yml ./config/config.prod.yml
 
 ENTRYPOINT [ "./main" ]
