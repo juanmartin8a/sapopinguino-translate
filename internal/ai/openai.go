@@ -42,7 +42,7 @@ func StreamResponse(context context.Context, model string, input string) <-chan 
 				},
 				Prompt: responses.ResponsePromptParam{
 					ID:      "pmpt_68d6dd3df0cc8195b092c08b02bfe24e05d616bbdf9c857c",
-					Version: openai.String("3"),
+					Version: openai.String("4"),
 				},
 				Reasoning: openai.ReasoningParam{
 					Effort: openai.ReasoningEffortMinimal,
