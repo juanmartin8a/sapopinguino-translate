@@ -8,9 +8,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	aiutils "sapopinguino/internal/ai"
-	awsutils "sapopinguino/internal/aws"
-	"sapopinguino/internal/config"
+	aiutils "sapopinguino-translate/internal/ai"
+	awsutils "sapopinguino-translate/internal/aws"
+	"sapopinguino-translate/internal/config"
 	"strings"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -58,7 +58,7 @@ func handler(ctx context.Context, event events.APIGatewayWebsocketProxyRequest) 
 		}, error
 	}
 
-	tokenStreamChannel := aiutils.StreamResponse(ctx, openai.ChatModelGPT5Nano, aiutils.DeveloperPrompt, bodyS.Message)
+	tokenStreamChannel := aiutils.StreamResponse(ctx, openai.ChatModelGPT5Nano, bodyS.Message)
 
 	for res := range tokenStreamChannel {
 		if res.Error != nil {
