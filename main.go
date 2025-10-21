@@ -74,8 +74,6 @@ func handler(ctx context.Context, event events.APIGatewayWebsocketProxyRequest) 
 			break
 		}
 
-		var jsonData []byte
-		jsonData, err = json.Marshal(res.Response)
 		if err != nil {
 			log.Printf("Error marshaling JSON: %v", err)
 			_, err := awsutils.APIGatewayClient.PostToConnection(ctx, &apigatewaymanagementapi.PostToConnectionInput{
@@ -91,7 +89,7 @@ func handler(ctx context.Context, event events.APIGatewayWebsocketProxyRequest) 
 
 		_, err = awsutils.APIGatewayClient.PostToConnection(ctx, &apigatewaymanagementapi.PostToConnectionInput{
 			ConnectionId: &connectionID,
-			Data:         jsonData,
+			Data:         []byte(res.Response),
 		})
 		if err != nil {
 			if strings.Contains(err.Error(), "410") {
